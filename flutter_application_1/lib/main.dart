@@ -1,38 +1,69 @@
-import 'package:flutter/material.dart';
-
-
+import "package:flutter/material.dart";
 
 void main() {
   runApp(new MaterialApp(
-    home: new MyApp(),
+    home: new HomePage(),
+
+    routes: <String, WidgetBuilder> {
+      "/SecondPage": (BuildContext context) => new SecondPage()
+    }
   ));
 }
 
-class MyApp extends StatefulWidget {
-  
-  @override
-  _State createState() => new _State();
-}
 
-class _State extends State<MyApp>{
+class HomePage extends StatelessWidget {
   @override
-
   Widget build(BuildContext context) {
     return new Scaffold(
-      appBar: new AppBar(
-        title: new Text("Name here"),
-      ),
+      appBar: new AppBar(title: new Text("Home Page"), backgroundColor: Colors.deepOrange),
 
      body: new Container(
-      padding: new EdgeInsets.all(32.0),
       child: new Center(
         child: new Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            new Text('Hello world')
-          ]
-        )
+            new IconButton(
+              icon: new Icon(Icons.favorite, color: Colors.redAccent),
+              iconSize: 70.0,
+              onPressed: () {
+                Navigator.of(context).pushNamed("/SecondPage");
+              },
+            ),
+
+           new Text("Home") 
+          ],
+        ),
       ),
      ), 
     );
   }
+}
+
+class SecondPage extends StatelessWidget {
+  @override
+
+ Widget build(BuildContext context) {
+  return new Scaffold(
+    appBar: new AppBar(
+      title: new Text("Second page"),
+      backgroundColor: Colors.deepOrange,
+    ),
+
+   body: new Container(
+    child: new Center(
+      child: new Column(
+        MainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          new IconButton(
+            icon: new Icon(
+              Icons.home
+            ),
+          ),
+        ],
+      )
+    ),
+   ), 
+
+  );
+ } 
 }
