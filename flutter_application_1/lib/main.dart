@@ -1,73 +1,74 @@
-import "package:flutter/material.dart";
+import 'package:flutter/material.dart';
 
-void main() {
-  runApp(new MaterialApp(
-    home: new HomePage(),
+void main() => runApp(new MyApp());
 
-    routes: <String, WidgetBuilder> {
-      "/SecondPage": (BuildContext context) => new SecondPage()
-    }
-  ));
-}
-
-
-class HomePage extends StatelessWidget {
+class MyApp extends StatelessWidget {
   @override
+
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(title: new Text("Home Page"), backgroundColor: Colors.deepOrange),
+    var routes = <String, WidgetBuilder> {
+      MyItemsPage.routeName: (BuildContext context) => new MyItemsPage(title: "MyItemsPage"),
+    };
 
-     body: new Container(
-      child: new Center(
-        child: new Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            new IconButton(
-              icon: new Icon(Icons.favorite, color: Colors.redAccent),
-              iconSize: 70.0,
-              onPressed: () {
-                Navigator.of(context).pushNamed("/SecondPage");
-              },
-            ),
+    return new MaterialApp(
+      title: "Flutter Demo",
 
-           new Text("Home") 
-          ],
-        ),
+      theme: new ThemeData(
+        primarySwatch: Colors.blue,
       ),
-     ), 
-    );
+
+      home: new MyHomePage(
+        title: "Flutter demo home page",
+      ),
+
+      routes: routes,
+    ); 
   }
 }
 
-class SecondPage extends StatelessWidget {
+
+class MyHomePage extends StatefulWidget {
+  MyHomePage({
+    Key key,
+    this.title
+  }): super(key: key);
+
+  final String title;
+
   @override
+  _MyHomePageState createState() => new _MyHomePageState();
+}
 
- Widget build(BuildContext context) {
-  return new Scaffold(
-    appBar: new AppBar(
-      title: new Text("Second page"),
-      backgroundColor: Colors.deepOrange,
-    ),
+class _MyHomePageState extends State<MyHomePage> {
+  int _counter = 0;
 
-   body: new Container(
-    child: new Center(
-      child: new Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+  void _incrementCounter() {
+    Navigator.pushNamed(context, MyItemsPage.routeName);
+  }
+
+  @override 
+  Widget build(BuildContext context) {
+    var button = new IconButton(
+      icon: new Icon(Icons.access_alarm),
+      onPressed: _onButtonPressed,
+    );
+
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text(widget.title),
+      ),
+
+      body: new Column(
         children: <Widget>[
-          new IconButton(
-            icon: new Icon(
-              Icons.home, color: Colors.blue,
-            ),
-              iconSize: 70.0,
-              onPressed: null,
-          ),
-          new Text("Second Page"),
-        ],
-        
-      )
-    ),
-   ), 
+          new Text("Dog"),
 
-  );
- } 
+          new Text("Cat"),
+
+          button
+        ],
+      ),
+
+      floatingActionButton: new FloatingActionButton(),
+    );
+  }
 }
