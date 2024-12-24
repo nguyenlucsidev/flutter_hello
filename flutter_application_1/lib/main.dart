@@ -1,74 +1,54 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 
-void main() => runApp(new MyApp());
-
-class MyApp extends StatelessWidget {
-  @override
-
-  Widget build(BuildContext context) {
-    var routes = <String, WidgetBuilder> {
-      MyItemsPage.routeName: (BuildContext context) => new MyItemsPage(title: "MyItemsPage"),
-    };
-
-    return new MaterialApp(
-      title: "Flutter Demo",
-
-      theme: new ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-
-      home: new MyHomePage(
-        title: "Flutter demo home page",
-      ),
-
-      routes: routes,
-    ); 
-  }
+void main() {
+  runApp(
+    new MaterialApp(
+      home: new MyTextInput()
+    )
+  );
 }
 
-
-class MyHomePage extends StatefulWidget {
-  MyHomePage({
-    Key key,
-    this.title
-  }): super(key: key);
-
-  final String title;
-
+class MyTextInput extends StatefulWidget {
   @override
-  _MyHomePageState createState() => new _MyHomePageState();
+  MyTextInputState createState() => new MyTextInputState();
+
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class MyTextInputState extends State<MyTextInput> {
+  String result = "";
 
-  void _incrementCounter() {
-    Navigator.pushNamed(context, MyItemsPage.routeName);
-  }
-
-  @override 
+  @override
   Widget build(BuildContext context) {
-    var button = new IconButton(
-      icon: new Icon(Icons.access_alarm),
-      onPressed: _onButtonPressed,
-    );
-
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text(widget.title),
+        title: new Text("input text"),
+
+        backgroundColor: Colors.deepOrange,
       ),
 
-      body: new Column(
-        children: <Widget>[
-          new Text("Dog"),
+      body: new Container(
+        child: new Center(
+          child: new Column(
+            mainAxisAlignment: MainAxisAlignment.center,
 
-          new Text("Cat"),
+            children: <Widget>[
+              new TextField(
+                decoration: new InputDecoration(
+                  hintText: "Type in here",
+                ),
 
-          button
-        ],
+                onChanged: (String str) {
+                  setState(() {
+                    result = str;
+                  });
+                },
+              ),
+
+              new Text(result),
+            ],
+          ),
+        ),
       ),
-
-      floatingActionButton: new FloatingActionButton(),
     );
   }
 }
