@@ -10,15 +10,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Material(
-          color: Colors.blueAccent,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+      home: Scaffold(
+        appBar: AppBar(),
+        floatingActionButton: FloatingActionButton(onPressed: () {}),
+        backgroundColor: Colors.redAccent,
+        drawer: Container(
+          width: 400,
+          height: 500,
+          color: Colors.white,
+        ),
+        body: Column(
           children: [
-            Text("hello world2 "),
-            Text("hello again"),
-            Text("new text")
-          ]
+            Text("Hello"),
+            Text("Login to continue"),
+          ],
         ),
       ),
     );
