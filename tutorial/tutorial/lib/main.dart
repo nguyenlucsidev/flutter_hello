@@ -35,15 +35,16 @@ class MyApp extends StatelessWidget {
                   print("login is click");
                 },
                 child: Text("Login")),
-            
             Text("Or sign in with"),
-
             ElevatedButton(
               onPressed: () {
                 print("login with google");
               },
-
-              child: Image.asset("assets/images/google.png"),
+              child: Image.asset(
+                "assets/images/google.png",
+                width: 22,
+                height: 22,
+              ),
             ),
           ],
         ),
