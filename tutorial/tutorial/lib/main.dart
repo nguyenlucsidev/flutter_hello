@@ -1,5 +1,5 @@
 import "package:flutter/material.dart";
-import "package:tutorial/login_page.dart";
+import "package:tutorial/pages/login_page.dart";
 import "package:tutorial/styles/app_colors.dart";
 
 void main() {
